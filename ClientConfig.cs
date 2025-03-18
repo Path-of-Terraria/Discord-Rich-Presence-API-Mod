@@ -48,11 +48,6 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowPrefix;
 
-	public override void OnLoaded()
-	{
-		DiscordRPCAPIMod.Instance.Config = this;
-	}
-
 	public override void OnChanged()
 	{
 		if (DiscordRPCAPIMod.Instance == null || DiscordRPCAPIMod.Instance.Client == null)
@@ -74,11 +69,13 @@ public class ClientConfig : ModConfig
 			string currentClient = DiscordRPCAPIMod.Instance.CurrentClient;
 			DiscordRPCAPIMod.Instance.CurrentClient = "default";
 			DiscordRPCAPIMod.Instance.ChangeDiscordClient(currentClient);
+
 			if (!Main.gameMenu)
 			{
 				DiscordRPCAPIMod.Instance.UpdateWorldStaticInfo();
 				DiscordRPCAPIMod.Instance.ClientUpdatePlayer();
 			}
+
 			DiscordRPCAPIMod.Instance.ClientForceUpdate();
 		}
 		else if (!Client.IsDisposed)

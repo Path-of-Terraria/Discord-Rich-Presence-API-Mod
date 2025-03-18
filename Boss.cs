@@ -1,29 +1,11 @@
 namespace DiscordRPCAPI;
 
 /// <summary>
-/// Represents an NPC that is presentable through
-/// Discord Rich Presence.
+/// Data structure for any given NPC, boss or otherwise.<br/>
+/// <see cref="Boss"/>es always override any <see cref="Biome"/>s.
 /// </summary>
-public readonly struct Boss(string imageKey, string imageName, float priority, string clientId)
-{
-	/// <value>
-	/// name of the uploaded image for the large profile artwork
-	/// </value>
-	public readonly string ImageKey = imageKey;
-
-	/// <value>
-	/// tooltip for the imageKey
-	/// </value>
-	public readonly string ImageName = imageName;
-
-	/// <value>
-	/// floating point value to allow for boss precedence.
-	/// the higher the value, the higher the precedence.
-	/// </value>
-	public readonly float Priority = priority;
-
-	/// <value>
-	/// DiscordRP instance linked to this boss
-	/// </value>
-	public readonly string ClientId = clientId;
-}
+/// <param name="ImageKey">The image key for the Discord app to reference.</param>
+/// <param name="ImageName">The hover text for the image in Discord.</param>
+/// <param name="Priority">Priority of the boss compared to all other bosses/NPCs. Higher value = higher priority.</param>
+/// <param name="ClientId">DiscordRP instance linked to this boss.</param>
+public readonly record struct Boss(string ImageKey, string ImageName, float Priority, string ClientId);

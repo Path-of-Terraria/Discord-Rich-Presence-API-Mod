@@ -63,3 +63,67 @@ Configs: {
 		}
 	}
 }
+
+ClientConfig: {
+	DisplayName: Client Config
+
+	Headers: {
+		RichPresenceSettings: Rich Presence Settings Header
+		VisibilitySettings: Visibility Settings Header
+	}
+
+	Enable: {
+		Label: Enable
+		Tooltip: ""
+	}
+
+	Timer: {
+		Label: Timer
+		Tooltip: ""
+	}
+
+	ShowTime: {
+		Label: Show Time
+		Tooltip: ""
+	}
+
+	ShowTimeCycle: {
+		Label: Show Time Cycle
+		Tooltip: ""
+	}
+
+	ShowWorldName: {
+		Label: Show World Name
+		Tooltip: ""
+	}
+
+	ShowHealth: {
+		Label: Show Health
+		Tooltip: ""
+	}
+
+	ShowDPS: {
+		Label: Show D P S
+		Tooltip: ""
+	}
+
+	ShowMana: {
+		Label: Show Mana
+		Tooltip: ""
+	}
+
+	ShowDefense: {
+		Label: Show Defense
+		Tooltip: ""
+	}
+
+	ShowDamage: {
+		Label: Show Damage
+		Tooltip: ""
+	}
+
+	ShowPrefix: {
+		Label: Show Prefix
+		Tooltip: ""
+	}
+}

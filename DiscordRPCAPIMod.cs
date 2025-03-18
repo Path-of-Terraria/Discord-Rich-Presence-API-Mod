@@ -33,8 +33,8 @@ public class DiscordRPCAPIMod : Mod
 	internal bool InWorld = false;
 	internal bool CanCreateClient;
 	internal string WorldStaticInfo = null;
-	internal Dictionary<string, string> savedDiscordAppId;
-	internal Timestamps timeStamp = null;
+	internal Dictionary<string, string> SavedDiscordAppId;
+	internal Timestamps TimeStamp = null;
 
 	private Dictionary<int, Boss> presentableBosses = [];
 	private ClientStatus customStatus = null;
@@ -101,7 +101,7 @@ public class DiscordRPCAPIMod : Mod
 		return currentBiome;
 	}
 
-	private string GetTimeOfDay()
+	private static string GetTimeOfDay()
 	{
 		if (!Config.ShowTimeCycle)
 		{
@@ -160,7 +160,7 @@ public class DiscordRPCAPIMod : Mod
 		}
 	}
 
-	private string getPlayerState()
+	private static string GetPlayerState()
 	{
 		if (!Config.ShowPlayerStats())
 		{
@@ -211,14 +211,14 @@ public class DiscordRPCAPIMod : Mod
 
 			presentableBiomes = [];
 			presentableBosses = [];
-			savedDiscordAppId = [];
+			SavedDiscordAppId = [];
 
 			RichPresenceInstance = new RichPresence
 			{
 				Secrets = new Secrets()
 			};
 
-			timeStamp = Timestamps.Now;
+			TimeStamp = Timestamps.Now;
 
 			CreateNewDiscordRPCRichPresenceInstance();
 		}
@@ -250,7 +250,7 @@ public class DiscordRPCAPIMod : Mod
 			return;
 		}
 
-		if (!savedDiscordAppId.ContainsKey(newClient))
+		if (!SavedDiscordAppId.ContainsKey(newClient))
 		{
 			return;
 		}
@@ -279,7 +279,7 @@ public class DiscordRPCAPIMod : Mod
 		// This should never change
 		const string steamAppID = "1281930";
 
-		savedDiscordAppId.TryAdd(key, discordAppId);
+		SavedDiscordAppId.TryAdd(key, discordAppId);
 		Client = new DiscordRpcClient(applicationID: discordAppId, autoEvents: false);
 
 		bool failedToRegisterScheme = false;
@@ -312,7 +312,7 @@ public class DiscordRPCAPIMod : Mod
 	/// <param name="appID">Discord App ID</param>
 	public void AddDiscordAppID(string key, string appID)
 	{
-		savedDiscordAppId.TryAdd(key, appID);
+		SavedDiscordAppId.TryAdd(key, appID);
 	}
 
 	/// <summary>
@@ -420,7 +420,7 @@ public class DiscordRPCAPIMod : Mod
 				Client.Initialize();
 			}
 
-			RichPresenceInstance.Timestamps = Config.ShowTime ? timeStamp : null;
+			RichPresenceInstance.Timestamps = Config.ShowTime ? TimeStamp : null;
 			Client.SetPresence(RichPresenceInstance);
 			Client.Invoke();
 		}
@@ -467,12 +467,17 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// update the party info
+	/// Former description: Update the party info.<br/>
+	/// At the moment, only called a method named ClientSetParty, which invariably set two values to null.<br/>
+	/// Unsure of usage, will stay in case it's useful for future functionality.
 	/// </summary>
 	internal void UpdateLobbyInfo()
 	{
 		if (Main.LobbyId != 0UL)
 		{
+			RichPresenceInstance.Secrets.JoinSecret = null;
+			RichPresenceInstance.Party = null;
+
 			//string sId = SteamUser.GetSteamID().ToString();
 			//ClientSetParty(null, Main.LocalPlayer.name, Main.CurrentFrameFlags.ActivePlayersCount);
 		}
@@ -490,7 +495,7 @@ public class DiscordRPCAPIMod : Mod
 
 		ClientStatus status = new()
 		{
-			State = getPlayerState(),
+			State = GetPlayerState(),
 			Description = null,
 			LargeImageText = WorldStaticInfo,
 		};
@@ -539,7 +544,7 @@ public class DiscordRPCAPIMod : Mod
 	/// Get the player's item stat
 	/// </summary>
 	/// <returns>key and text for small images</returns>
-	internal (string, string) GetItemStat()
+	internal static (string, string) GetItemStat()
 	{
 		int atk = -1;
 		string key = null;

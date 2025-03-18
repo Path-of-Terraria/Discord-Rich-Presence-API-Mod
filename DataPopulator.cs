@@ -263,7 +263,7 @@ internal class DataPopulator
 			return;
 		}
 
-		if (!DiscordRPCAPIMod.Instance.savedDiscordAppId.ContainsKey(client))
+		if (!DiscordRPCAPIMod.Instance.SavedDiscordAppId.ContainsKey(client))
 		{
 			Logger.Error($"Instance {client} not found, redirected to default Instance!");
 			client = "default";
@@ -297,7 +297,7 @@ internal class DataPopulator
 		}
 
 		//Logger.Info($"Adding biome {imageKey.Item2} in {client} Instance...");
-		if (!DiscordRPCAPIMod.Instance.savedDiscordAppId.ContainsKey(client))
+		if (!DiscordRPCAPIMod.Instance.SavedDiscordAppId.ContainsKey(client))
 		{
 			Logger.Error($"Instance {client} not found, redirected to default Instance!");
 			client = "default";
