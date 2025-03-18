@@ -266,7 +266,7 @@ public class DiscordRPCAPIMod : Mod
 	internal void CreateNewDiscordRPCRichPresenceInstance(string key = "default")
 	{
 		const string TerrariaAppId = "1281930";
-		const string DiscordAppId = "946433944390340688";
+		const string DiscordAppId = "1351686373786255431";
 
 		SavedDiscordAppId.TryAdd(key, DiscordAppId);
 		Client = new DiscordRpcClient(applicationID: DiscordAppId, autoEvents: false);
@@ -356,7 +356,7 @@ public class DiscordRPCAPIMod : Mod
 		}
 		else
 		{
-			RichPresenceInstance.Assets.LargeImageKey = "terraria-forest"; //status.LargeImageKey;
+			RichPresenceInstance.Assets.LargeImageKey = "forest"; //status.LargeImageKey;
 			RichPresenceInstance.Assets.LargeImageText = status.LargeImageText;
 		}
 
