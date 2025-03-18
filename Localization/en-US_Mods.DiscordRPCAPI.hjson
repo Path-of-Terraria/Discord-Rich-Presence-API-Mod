@@ -1,0 +1,65 @@
+Configs: {
+	ClientConfig: {
+		DisplayName: Config
+
+		Headers: {
+			RichPresenceSettings: Rich Presence Settings
+			VisibilitySettings: Visibility Settings
+		}
+
+		Enable: {
+			Label: Enable
+			Tooltip: Enables the Rich Presence.
+		}
+
+		Timer: {
+			Label: Refresh Timer
+			Tooltip: How often, in seconds, that the Rich Presence updates.
+		}
+
+		ShowTime: {
+			Label: Display Elapsed Time
+			Tooltip: Whether or not to display total playtime.
+		}
+
+		ShowTimeCycle: {
+			Label: Display Day/Night
+			Tooltip: Whether or not to display day/night time.
+		}
+
+		ShowWorldName: {
+			Label: Display World Name
+			Tooltip: Whether or not to display world name.
+		}
+
+		ShowHealth: {
+			Label: Display Player Health
+			Tooltip: Whether or not to display player health.
+		}
+
+		ShowDPS: {
+			Label: Display Player DPS
+			Tooltip: Whether or not to display player DPS.
+		}
+
+		ShowMana: {
+			Label: Display Player Mana
+			Tooltip: Whether or not to display player mana.
+		}
+
+		ShowDefense: {
+			Label: Display Player Defense
+			Tooltip: Whether or not to display player defense.
+		}
+
+		ShowDamage: {
+			Label: Display Weapon Damage
+			Tooltip: Whether or not to display player damage.
+		}
+
+		ShowPrefix: {
+			Label: Display Weapon Prefix
+			Tooltip: Whether or not to display player prefix.
+		}
+	}
+}

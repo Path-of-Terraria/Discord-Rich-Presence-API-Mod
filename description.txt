@@ -1,0 +1,72 @@
+This mod is a port of PurplefinNeptunia and staticfox's original DiscordRP mod.
+A ton of changes have happened, but you can find the original 1.3 code here: 
+https://github.com/staticfox/DiscordRP-tModLoader?tab=readme-ov-file
+
+Original Description:
+This mod add a little extra detail of your ingame terraria activity to your discord status.
+Now with config to configure visibility.
+
+Displayed info:
+- Current encountered boss
+- Current occurring event
+- Player current biome
+- Day/Night (for event and biome only)
+- Weapon name
+- Weapon damage (with type)
+- World name and difficulty (Normal/Expert)
+- Health, Mana, Defense (or just "Dead")
+
+Developers can use modcall to add mod boss and biome to Rich Presence.
+Go to github wiki for more information.
+
+Displayed Events:
+- NPC birthday party
+- Sandstorm
+- Slime Rain
+- Old One's Army
+- Goblin Invasion
+- Frost Legion
+- Pirate Invasion
+- Martian Madness
+- Blood Moon
+- Pumpkin Moon
+- Frost Moon
+- Solar Eclipse
+- Celestial moons
+
+Displayed Biomes:
+- Forest
+- Underground
+- Cavern
+- Ocean
+- Mushroom (underground)
+- Jungle (bee hive and temple)
+- Desert (underground)
+- Snow (underground)
+- Dungeon
+- Hollow (underground)
+- Evils (underground)
+- Cave (granite, marble, spider)
+- Space (floating island, floating lake)
+- Underworld
+- Meteor
+- Town
+
+Displayed Bosses:
+- King Slime
+- Eye of Cthulhu
+- Eater of Worlds
+- Brain of Cthulhu
+- Queen Bee
+- Skeletron
+- Wall of Flesh
+- The Twins
+- The Destroyer
+- Skeletron Prime
+- Plantera
+- Golem
+- Duke Fishron
+- Lunatic Cultist
+- Moon Lord
+
+Thanks to Pullo and Johny for helping me testing the mod.

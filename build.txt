@@ -1,0 +1,8 @@
+author = Purplefin Neptuna, staticfox, GabeHasWon
+version = 1.0
+displayName = Discord Rich Presence API
+homepage = https://github.com/PurplefinNeptuna/DiscordRP-tModLoader
+includeSource = true
+dllReferences = DiscordRPC
+buildIgnore = *.git, *.csproj, *.user, *.sln, *.exe, .vs/*, bin/*, obj/*
+side = Client
