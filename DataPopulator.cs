@@ -6,14 +6,20 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace DiscordRPCAPI;
+namespace DiscordRPAPI;
 
+/// <summary>
+/// Adds all relevant Data for the mod
+/// </summary>
 internal class DataPopulator
 {
 	private static ILog Logger => DiscordRPCAPIMod.Instance.Logger;
 	private static Player LocalPlayer => Main.LocalPlayer;
 	private static ClientPlayer LocalClient => Main.LocalPlayer?.GetModPlayer<ClientPlayer>();
 
+	/// <summary>
+	/// Add all Vanilla Events to the Biome List
+	/// </summary>
 	public static void AddVanillaEvents()
 	{
 		AddBiome(
@@ -81,7 +87,7 @@ internal class DataPopulator
 			"event_stardustmoon", "Stardust Pillar area", 130f
 		);
 	}
-
+	
 	public static void AddVanillaBiomes()
 	{
 		AddBiome(

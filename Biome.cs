@@ -1,7 +1,7 @@
 using System;
 using Terraria.Localization;
 
-namespace DiscordRPCAPI; 
+namespace DiscordRPAPI; 
 
 /// <summary>
 /// Data structure representing a biome, structure, event, or other environmental location.<br/>
@@ -35,7 +35,7 @@ public readonly struct Biome(Func<bool> checker, string imageKey, LocalizedText 
 	public readonly float Priority = priority;
 
 	/// <summary>
-	/// DiscordRP instance linked to this biome.
+	/// DiscordRP-API instance linked to this biome.
 	/// </summary>
 	public readonly string ClientId = clientId;
 }

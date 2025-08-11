@@ -1,4 +1,4 @@
-namespace DiscordRPCAPI;
+namespace DiscordRPAPI;
 
 /// <summary>
 /// Defines the required fields when updating
