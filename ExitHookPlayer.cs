@@ -1,9 +1,9 @@
-﻿namespace DiscordRPAPI;
+﻿namespace DiscordRPCAPI;
 
 internal class ExitHookPlayer : ModSystem
 {
 	/// <summary>
-	/// Show the Player status as on MainMenu on Exit of World
+	/// Show the player status as on main menu on exit of world
 	/// </summary>
 	public override void ClearWorld()
 	{

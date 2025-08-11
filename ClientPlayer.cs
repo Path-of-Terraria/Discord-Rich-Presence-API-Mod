@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using Terraria;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 /// <summary>
-/// A custom player class for handling client-side logic in the Discord RPC API mod.
-/// This class extends <see cref="ModPlayer"/> to manage Discord presence updates based on player events and state.
+/// A custom player class for handling client-side logic in the discord RPC API mod.
+/// This class extends <see cref="ModPlayer"/> to manage discord presence updates based on player events and state.
 /// </summary>
 public class ClientPlayer : ModPlayer
 {

@@ -6,20 +6,15 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
-/// <summary>
-/// Adds all relevant Data for the mod
-/// </summary>
 internal class DataPopulator
 {
 	private static ILog Logger => DiscordRPCAPIMod.Instance.Logger;
 	private static Player LocalPlayer => Main.LocalPlayer;
 	private static ClientPlayer LocalClient => Main.LocalPlayer?.GetModPlayer<ClientPlayer>();
 
-	/// <summary>
-	/// Add all Vanilla Events to the Biome List
-	/// </summary>
+
 	public static void AddVanillaEvents()
 	{
 		AddBiome(

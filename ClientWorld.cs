@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.ID;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 public class ClientWorld : ModSystem
 {
@@ -9,7 +9,7 @@ public class ClientWorld : ModSystem
 	internal static bool NearDirt;
 	
 	/// <summary>
-	/// will set nearclouds or neardirt variables to true if enough blocks are in the vicinity.
+	/// Sets <see cref="NearClouds"/> or <see cref="NearDirt"/> to true if enough blocks are in the vicinity.
 	/// </summary>
 	/// <param name="tileCounts"></param>
 	public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)

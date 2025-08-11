@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 /// <summary>
-/// Provides a set of methods to handle mod calls for the Discord RPC API mod, allowing other mods to interact with Discord Rich Presence functionality.
+/// Provides a set of methods to handle mod calls for the discord RPC API mod, allowing other mods to interact with discord rich presence functionality.
 /// </summary>
 internal static class ModCalls
 {
 	/// <summary>
-	/// Processes mod calls to configure Discord Rich Presence settings, such as adding bosses, biomes, clients, or setting main menu status.
+	/// Processes mod calls to configure discord rich presence settings, such as adding bosses, biomes, clients, or setting main menu status.
 	/// </summary>
 	/// <param name="args">An array of arguments specifying the type of call and its parameters. The first argument is the message type (e.g., "AddBoss", "AddBiome", "MainMenu", "AddClient").</param>
 	/// <returns><c>true</c> if the call is processed successfully; otherwise, throws an exception for invalid operations.</returns>
@@ -89,9 +89,9 @@ internal static class ModCalls
 	}
 
 	/// <summary>
-	/// Sets a custom main menu status for Discord Rich Presence.
+	/// Sets a custom main menu status for discord rich presence.
 	/// </summary>
-	/// <param name="args">The arguments array containing details, additional details, and image keys for the Discord status.</param>
+	/// <param name="args">The arguments array containing details, additional details, and image keys for the discord status.</param>
 	/// <returns><c>true</c> if the main menu status is set successfully.</returns>
 	/// <exception cref="InvalidOperationException">Thrown if a client cannot be created at this time.</exception>
 	private static bool CallAddMainMenu(object[] args)
@@ -111,7 +111,7 @@ internal static class ModCalls
 	}
 
 	/// <summary>
-	/// Adds a biome or event to the Discord Rich Presence data with a specified checker function, texture, and priority.
+	/// Adds a biome or event to the discord rich presence data with a specified checker function, texture, and priority.
 	/// </summary>
 	/// <param name="args">The arguments array containing the checker function, texture path, language key, priority, and client.</param>
 	/// <param name="message">The type of call ("AddBiome" or "AddEvent").</param>
@@ -128,7 +128,7 @@ internal static class ModCalls
 	}
 
 	/// <summary>
-	/// Adds a boss to the Discord Rich Presence data with specified IDs, image key, and priority.
+	/// Adds a boss to the discord rich presence data with specified IDs, image key, and priority.
 	/// </summary>
 	/// <param name="args">The arguments array containing the boss IDs, image key, priority, and client.</param>
 	/// <returns><c>true</c> if the boss is added successfully.</returns>

@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using DiscordRPC;
 using Terraria.ID;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 /// <summary>
-/// The main mod class for the Discord RPC API mod, responsible for managing Discord Rich Presence integration with tModLoader.
+/// The main mod class for the discord RPC API mod, responsible for managing discord rich presence integration with tModLoader.
 /// </summary>
 public class DiscordRPCAPIMod : Mod
 {
@@ -20,7 +20,7 @@ public class DiscordRPCAPIMod : Mod
 	public static DiscordRPCAPIMod Instance => ModContent.GetInstance<DiscordRPCAPIMod>();
 
 	/// <summary>
-	/// Gets or sets the Discord RPC client used for communication with Discord.
+	/// Gets or sets the discord RPC client used for communication with Discord.
 	/// </summary>
 	internal DiscordRpcClient Client
 	{
@@ -28,7 +28,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Gets the current Discord Rich Presence instance.
+	/// Gets the current discord rich presence instance.
 	/// </summary>
 	internal RichPresence RichPresenceInstance
 	{
@@ -47,19 +47,19 @@ public class DiscordRPCAPIMod : Mod
 	internal static ClientConfig Config => ModContent.GetInstance<ClientConfig>();
 
 	/// <summary>
-	/// Gets or sets the current Discord client key (default is "default").
+	/// Gets or sets the current discord client key (default is "default").
 	/// </summary>
 	public string CurrentClient = "default";
 
 	// <summary>
-	/// Gets or sets the timestamp of the last Discord presence update.
+	/// Gets or sets the timestamp of the last discord presence update.
 	/// </summary>
 	internal int PrevSend = 0;
 	internal bool InWorld = false;
 	internal bool CanCreateClient;
 	
 	/// <summary>
-	/// Gets or sets the static world information displayed in the Discord status.
+	/// Gets or sets the static world information displayed in the discord status.
 	/// </summary>
 	internal string WorldStaticInfo = null;
 	internal Dictionary<string, string> SavedDiscordAppId;
@@ -70,7 +70,7 @@ public class DiscordRPCAPIMod : Mod
 	private List<Biome> presentableBiomes = [];
 
 	/// <summary>
-	/// Adds a boss to the collection of presentable bosses for Discord Rich Presence.
+	/// Adds a boss to the collection of presentable bosses for discord rich presence.
 	/// </summary>
 	/// <param name="bossId">The ID of the boss.</param>
 	/// <param name="boss">The <see cref="Boss"/> object to add.</param>
@@ -116,7 +116,7 @@ public class DiscordRPCAPIMod : Mod
 
 			Boss boss = GetBossById(npc.type);
 
-			if (currentBoss != null && currentBoss.Priority > boss.Priority)
+			if (currentBoss != null && currentBoss.Value.Priority > boss.Priority)
 			{
 				continue;
 			}
@@ -128,7 +128,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Adds a biome to the collection of presentable biomes for Discord Rich Presence.
+	/// Adds a biome to the collection of presentable biomes for discord rich presence.
 	/// </summary>
 	/// <param name="biome">The <see cref="Biome"/> object to add.</param>
 	public void AddBiome(Biome biome)
@@ -158,7 +158,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Determines the current time of day in the game world for Discord status display.
+	/// Determines the current time of day in the game world for discord status display.
 	/// </summary>
 	/// <returns>A string indicating the time of day ("Dawn", "Day", "Dusk", or "Night"), or <c>null</c> if time display is disabled.</returns>
 	private static string GetTimeOfDay()
@@ -262,7 +262,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Sets a custom Discord Rich Presence status.
+	/// Sets a custom discord rich presence status.
 	/// </summary>
 	/// <param name="status">The <see cref="ClientStatus"/> object containing the custom status details.</param>
 	public void SetCustomStatus(ClientStatus status)
@@ -271,7 +271,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Initializes the mod, setting up the Discord Rich Presence client and related data structures.
+	/// Initializes the mod, setting up the discord rich presence client and related data structures.
 	/// </summary>
 	public override void Load()
 	{
@@ -314,9 +314,9 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Change the Discord App ID, currently takes 3s to change
+	/// Change the discord app ID, currently takes 3s to change
 	/// </summary>
-	/// <param name="newClient">New Discord App ID key</param>
+	/// <param name="newClient">New discord app ID key</param>
 	public void ChangeDiscordClient(string newClient)
 	{
 		if (newClient == CurrentClient)
@@ -333,16 +333,16 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Create new DiscordRP client, currently only used once
+	/// Create new discordRPC client, currently only used once
 	/// </summary>
-	/// <param name="appId">Discord App ID</param>
-	/// <param name="key">key for App ID</param>
+	/// <param name="appId">Discord app ID</param>
+	/// <param name="key">key for app ID</param>
 	internal void CreateNewDiscordRPCRichPresenceInstance(string key = "default")
 	{
 		const string TerrariaAppId = "1281930";
 		const string DiscordAppId = "1351686373786255431";
 
-		SavedDiscordAppId.Add(key, DiscordAppId);
+		SavedDiscordAppId.TryAdd(key, DiscordAppId);
 		Client = new DiscordRpcClient(applicationID: DiscordAppId, autoEvents: false);
 
 		bool failedToRegisterScheme = false;
@@ -375,7 +375,7 @@ public class DiscordRPCAPIMod : Mod
 	/// <param name="appID">Discord App ID</param>
 	public void AddDiscordAppID(string key, string appID)
 	{
-		SavedDiscordAppId.Add(key, appID);
+		SavedDiscordAppId.TryAdd(key, appID);
 	}
 
 	/// <summary>
@@ -492,7 +492,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Updates the Discord Rich Presence status every tick, based on the game state.
+	/// Updates the discord rich presence status every tick, based on the game state.
 	/// </summary>
 	public void ClientUpdate()
 	{
@@ -525,7 +525,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Handles mod calls from other mods to configure Discord Rich Presence settings.
+	/// Handles mod calls from other mods to configure discord rich presence settings.
 	/// </summary>
 	/// <param name="args">The arguments for the mod call.</param>
 	/// <returns>The result of the mod call, or an error message if called on a dedicated server.</returns>
@@ -540,7 +540,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Updates the Discord Rich Presence lobby information, currently setting party settings to null.
+	/// Updates the discord rich presence lobby information, currently setting party settings to null.
 	/// </summary>
 	internal void UpdateLobbyInfo()
 	{
@@ -581,7 +581,7 @@ public class DiscordRPCAPIMod : Mod
 
 		if (checkBoss != null)
 		{
-			Boss boss = checkBoss;
+			Boss boss = checkBoss.Value;
 			status.LargeImageKey = boss.ImageKey;
 			status.Description = "Fighting " + boss.ImageName;
 			selectedClient = boss.ClientId;
@@ -612,7 +612,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Retrieves the player's held item stats for Discord Rich Presence display.
+	/// Retrieves the player's held item stats for discord rich presence display.
 	/// </summary>
 	/// <returns>A tuple containing the image key and text description for the player's held item.</returns>
 	internal static (string, string) GetItemStat()
@@ -669,7 +669,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Updates the static world information for Discord Rich Presence, including world name and difficulty.
+	/// Updates the static world information for discord rich presence, including world name and difficulty.
 	/// </summary>
 	public void UpdateWorldStaticInfo()
 	{

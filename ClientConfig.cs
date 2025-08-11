@@ -3,7 +3,7 @@ using DiscordRPC;
 using Terraria;
 using Terraria.ModLoader.Config;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 public class ClientConfig : ModConfig
 {
@@ -48,9 +48,7 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowPrefix;
 
-	/// <summary>
-	/// Is called when the config was changed
-	/// </summary>
+
 	public override void OnChanged()
 	{
 		if (DiscordRPCAPIMod.Instance == null || DiscordRPCAPIMod.Instance.Client == null)
@@ -87,10 +85,7 @@ public class ClientConfig : ModConfig
 		}
 	}
 
-	/// <summary>
-	/// Shows the important stats of a player
-	/// </summary>
-	/// <returns>A string containing the stats</returns>
+
 	public bool ShowPlayerStats()
 	{
 		return ShowHealth || ShowMana || ShowDefense || ShowDPS;

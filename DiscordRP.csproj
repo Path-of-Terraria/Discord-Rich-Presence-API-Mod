@@ -5,6 +5,8 @@
     <LangVersion>latest</LangVersion>
     <PackageId>DiscordRPAPI</PackageId>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <AssemblyName>DiscordRPCAPI</AssemblyName>
+	  <RootNamespace>DiscordRPCAPI</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Remove="tModLoader.CodeAssist" />

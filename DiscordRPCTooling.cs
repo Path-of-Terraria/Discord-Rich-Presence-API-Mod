@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DiscordRPAPI;
+namespace DiscordRPCAPI;
 
 /// <summary>
-/// Provides utility methods for handling data conversions and Discord Rich Presence status updates in the Discord RPC API mod.
+/// Provides utility methods for handling data conversions and discord rich presence status updates in the discord RPC API mod.
 /// </summary>
 public static class DiscordRPCTooling
 {
@@ -30,12 +30,12 @@ public static class DiscordRPCTooling
 	}
 
 	/// <summary>
-	/// Sets a custom Discord Rich Presence status for the main menu.
+	/// Sets a custom discord rich presence status for the main menu.
 	/// </summary>
-	/// <param name="details">The upper text to display in the Discord status.</param>
-	/// <param name="additionalDetails">The lower text (state) to display in the Discord status.</param>
-	/// <param name="largeImage">A tuple containing the key and tooltip text for the large image in the Discord status.</param>
-	/// <param name="smallImage">A tuple containing the key and tooltip text for the small image in the Discord status.</param>
+	/// <param name="details">The upper text to display in the discord status.</param>
+	/// <param name="additionalDetails">The lower text (state) to display in the discord status.</param>
+	/// <param name="largeImage">A tuple containing the key and tooltip text for the large image in the discord status.</param>
+	/// <param name="smallImage">A tuple containing the key and tooltip text for the small image in the discord status.</param>
 	public static void NewMenuStatus(string details, string additionalDetails, (string, string) largeImage, (string, string) smallImage)
 	{
 		if (string.IsNullOrEmpty(largeImage.Item1))

@@ -1,7 +1,7 @@
 using System;
 using Terraria.Localization;
 
-namespace DiscordRPAPI; 
+namespace DiscordRPCAPI; 
 
 /// <summary>
 /// Data structure representing a biome, structure, event, or other environmental location.<br/>
