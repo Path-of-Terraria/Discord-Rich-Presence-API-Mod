@@ -68,28 +68,17 @@ public class ClientConfig : ModConfig
 			{
 				Client.Initialize();
 			}
-
-			if (!Client.IsInitialized)
-			{
-				return;
-			}
+			
 			string currentClient = DiscordRPCAPIMod.Instance.CurrentClient;
 			DiscordRPCAPIMod.Instance.CurrentClient = "default";
 			DiscordRPCAPIMod.Instance.ChangeDiscordClient(currentClient);
 			
-			if (!Client.IsInitialized)
-			{
-				return;
-			}
 			if (!Main.gameMenu)
 			{
 				DiscordRPCAPIMod.Instance.UpdateWorldStaticInfo();
 				DiscordRPCAPIMod.Instance.ClientUpdatePlayer();
 			}
-			if (!Client.IsInitialized)
-			{
-				return;
-			}
+
 			DiscordRPCAPIMod.Instance.ClientForceUpdate();
 		}
 		else if (!Client.IsDisposed)
