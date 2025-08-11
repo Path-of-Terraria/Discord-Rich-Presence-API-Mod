@@ -23,34 +23,40 @@ internal static class ModCalls
 
 		int argsCount = args.Length;
 		Array.Resize(ref args, 15);
-		string message = args[0] as string;
 
-		switch (message.ToLower())
+		if (args[0] is string message)
 		{
-			//e.g Call("AddBoss", List<int>Id, "Angry Slimey", "boss_placeholder", float default:16f, client="default")
-			case "addboss":
-				return CallAddBoss(args);
+			switch (message.ToLower())
+			{
+				//e.g Call("AddBoss", List<int>Id, "Angry Slimey", "boss_placeholder", float default:16f, client="default")
+				case "addboss":
+					return CallAddBoss(args);
 
-			//e.g Call("AddBiome", Func<bool> checker, "SlimeFire Biome", "biome_placeholder", float default:50f/150f, client="default")
-			case "addevent":
-			case "addbiome":
-				return CallAddBiome(args, message);
+				//e.g Call("AddBiome", Func<bool> checker, "SlimeFire Biome", "biome_placeholder", float default:50f/150f, client="default")
+				case "addevent":
+				case "addbiome":
+					return CallAddBiome(args, message);
 
-			//e.g. Call("MainMenu", "details", "belowDetails", "mod_placeholder", "modName")
-			case "mainmenu":
-			case "mainmenuoverride":
-				return CallAddMainMenu(args);
+				//e.g. Call("MainMenu", "details", "belowDetails", "mod_placeholder", "modName")
+				case "mainmenu":
+				case "mainmenuoverride":
+					return CallAddMainMenu(args);
 
-			//e.g. Call("AddClient", "716207249902796810", "angryslimey")
-			case "addclient":
-			case "addnewclient":
-			case "newclient":
-			case "adddiscordclient":
-				return CallAddClient(args, argsCount);
+				//e.g. Call("AddClient", "716207249902796810", "angryslimey")
+				case "addclient":
+				case "addnewclient":
+				case "newclient":
+				case "adddiscordclient":
+					return CallAddClient(args, argsCount);
+				//e.g. Call("AddPlayerStat", string statName, Func<string> statValue)
+				case "addplayerstat":
+					return CallAddPlayerStat(args);
+				default:
+					break;
+			}
+		}
 
-			default:
-				break;
-		};
+		;
 
 		return true;
 	}
@@ -140,6 +146,22 @@ internal static class ModCalls
 		string client = args[5] is string ? args[5] as string : "default";
 
 		DataPopulator.AddBoss(Id, ImageKey, priority, client);
+		return true;
+	}
+
+	/// <summary>
+	/// Adds a custom player stat for discord rich presence with <see cref="statName"/> and <see cref="statValue"/> from args
+	/// </summary>
+	/// <param name="args"></param>
+	/// <returns></returns>
+	private static bool CallAddPlayerStat(object[] args)
+	{
+		string statName = args[1] as string;
+		if (args[2] is not Func<string> statValue)
+		{
+			return false;
+		}
+		DataPopulator.AddCustomStat(statName, ref statValue);
 		return true;
 	}
 }

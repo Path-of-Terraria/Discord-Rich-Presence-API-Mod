@@ -4,6 +4,7 @@ global using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DiscordRPC;
 using Terraria.ID;
 
@@ -68,6 +69,8 @@ public class DiscordRPCAPIMod : Mod
 	private Dictionary<int, Boss> presentableBosses = [];
 	private ClientStatus customStatus = null;
 	private List<Biome> presentableBiomes = [];
+
+	private static Dictionary<string, Func<string>> customStats = [];
 
 	/// <summary>
 	/// Adds a boss to the collection of presentable bosses for discord rich presence.
@@ -155,6 +158,16 @@ public class DiscordRPCAPIMod : Mod
 		}
 
 		return currentBiome;
+	}
+
+	/// <summary>
+	/// Adds a custom stat to the list <see cref="customStats"/>
+	/// </summary>
+	/// <param name="stat"></param>
+	/// <param name="statValue"></param>
+	public void AddCustomStat(string stat, Func<string> statValue)
+	{
+		customStats.Add(stat,statValue);
 	}
 
 	/// <summary>
@@ -256,6 +269,16 @@ public class DiscordRPCAPIMod : Mod
 		if (Config.ShowDefense)
 		{
 			state += $"DEF: {Main.LocalPlayer.statDefense} ";
+		}
+
+		if (!Config.ShowCustomStat)
+		{
+			return state.Trim();
+		}
+
+		if (customStats.Count > 0)
+		{
+			state = customStats.Aggregate(state, (current, stat) => current + (stat.Key + ": " + stat.Value()));
 		}
 
 		return state.Trim();

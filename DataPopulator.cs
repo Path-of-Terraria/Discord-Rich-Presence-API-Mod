@@ -307,4 +307,15 @@ internal class DataPopulator
 		var biome = new Biome(checker, texturePath, Language.GetText(langKey), priority, client);
 		DiscordRPCAPIMod.Instance.AddBiome(biome);
 	}
+
+	public static bool AddCustomStat(string stat, ref Func<string> statValue)
+	{
+		if (string.IsNullOrWhiteSpace(stat))
+		{
+			 return false;
+		}
+		
+		DiscordRPCAPIMod.Instance.AddCustomStat(stat, statValue);
+		return true;
+	}
 }

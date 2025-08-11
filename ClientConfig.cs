@@ -33,7 +33,7 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowHealth;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowDPS;
 
 	[DefaultValue(false)]
@@ -47,6 +47,9 @@ public class ClientConfig : ModConfig
 
 	[DefaultValue(true)]
 	public bool ShowPrefix;
+	
+	[DefaultValue(true)]
+	public bool ShowCustomStat;
 
 
 	public override void OnChanged()
@@ -88,6 +91,6 @@ public class ClientConfig : ModConfig
 
 	public bool ShowPlayerStats()
 	{
-		return ShowHealth || ShowMana || ShowDefense || ShowDPS;
+		return ShowHealth || ShowMana || ShowDefense || ShowDPS || ShowCustomStat;
 	}
 }

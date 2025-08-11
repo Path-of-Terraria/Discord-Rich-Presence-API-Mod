@@ -126,4 +126,9 @@ ClientConfig: {
 		Label: Show Prefix
 		Tooltip: ""
 	}
+
+	ShowCustomStat: {
+		Label: Show Custom Stat
+		Tooltip: ""
+	}
 }
