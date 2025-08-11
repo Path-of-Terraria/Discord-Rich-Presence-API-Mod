@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <PackageId>DiscordRPAPI</PackageId>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Remove="tModLoader.CodeAssist" />
+    <PackageReference Include="DiscordRichPresence" Version="1.3.0.28" />
+  </ItemGroup>
+</Project>
