@@ -540,7 +540,9 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Updates the discord rich presence lobby information, currently setting party settings to null.
+	/// Former description: Update the party info.<br/>
+	/// At the moment, only called a method named ClientSetParty, which invariably set two values to null.<br/>
+	/// Unsure of usage, will stay in case it's useful for future functionality.
 	/// </summary>
 	internal void UpdateLobbyInfo()
 	{
