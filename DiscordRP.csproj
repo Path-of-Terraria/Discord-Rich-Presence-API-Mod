@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\references\tModLoader.targets" />
+  <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
-    <AssemblyName>DiscordRP</AssemblyName>
-    <TargetFramework>net45</TargetFramework>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
+    <PackageId>DiscordRPAPI</PackageId>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <AssemblyName>DiscordRPCAPI</AssemblyName>
+	  <RootNamespace>DiscordRPCAPI</RootNamespace>
   </PropertyGroup>
-  <Target Name="BuildMod" AfterTargets="Build">
-    <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks)" />
-  </Target>
   <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DiscordRPC">
-      <HintPath>lib\DiscordRPC.dll</HintPath>
-    </Reference>
+    <PackageReference Remove="tModLoader.CodeAssist" />
+    <PackageReference Include="DiscordRichPresence" Version="1.3.0.28" />
   </ItemGroup>
 </Project>

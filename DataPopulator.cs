@@ -14,6 +14,7 @@ internal class DataPopulator
 	private static Player LocalPlayer => Main.LocalPlayer;
 	private static ClientPlayer LocalClient => Main.LocalPlayer?.GetModPlayer<ClientPlayer>();
 
+
 	public static void AddVanillaEvents()
 	{
 		AddBiome(
@@ -81,7 +82,7 @@ internal class DataPopulator
 			"event_stardustmoon", "Stardust Pillar area", 130f
 		);
 	}
-
+	
 	public static void AddVanillaBiomes()
 	{
 		AddBiome(

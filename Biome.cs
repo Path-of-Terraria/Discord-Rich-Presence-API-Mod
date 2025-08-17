@@ -35,7 +35,7 @@ public readonly struct Biome(Func<bool> checker, string imageKey, LocalizedText 
 	public readonly float Priority = priority;
 
 	/// <summary>
-	/// DiscordRP instance linked to this biome.
+	/// DiscordRP-API instance linked to this biome.
 	/// </summary>
 	public readonly string ClientId = clientId;
 }

@@ -3,8 +3,17 @@ using System.Collections.Generic;
 
 namespace DiscordRPCAPI;
 
+/// <summary>
+/// Provides a set of methods to handle mod calls for the discord RPC API mod, allowing other mods to interact with discord rich presence functionality.
+/// </summary>
 internal static class ModCalls
 {
+	/// <summary>
+	/// Processes mod calls to configure discord rich presence settings, such as adding bosses, biomes, clients, or setting main menu status.
+	/// </summary>
+	/// <param name="args">An array of arguments specifying the type of call and its parameters. The first argument is the message type (e.g., "AddBoss", "AddBiome", "MainMenu", "AddClient").</param>
+	/// <returns><c>true</c> if the call is processed successfully; otherwise, throws an exception for invalid operations.</returns>
+	/// <exception cref="InvalidOperationException">Thrown if <see cref="DiscordRPCAPIMod.Instance"/> is null or if the call is invalid.</exception>
 	public static bool Call(params object[] args)
 	{
 		if (DiscordRPCAPIMod.Instance == null)
@@ -46,6 +55,13 @@ internal static class ModCalls
 		return true;
 	}
 
+	/// <summary>
+	/// Adds a new Discord client with the specified application ID and key.
+	/// </summary>
+	/// <param name="args">The arguments array containing the client ID and key.</param>
+	/// <param name="argsCount">The number of arguments provided in the original call.</param>
+	/// <returns><c>true</c> if the client is added successfully.</returns>
+	/// <exception cref="InvalidOperationException">Thrown if the argument count is not 3 or if a client cannot be created at this time.</exception>
 	private static bool CallAddClient(object[] args, int argsCount)
 	{
 		if (argsCount != 3 || !DiscordRPCAPIMod.Instance.CanCreateClient)
@@ -72,6 +88,12 @@ internal static class ModCalls
 		return true;
 	}
 
+	/// <summary>
+	/// Sets a custom main menu status for discord rich presence.
+	/// </summary>
+	/// <param name="args">The arguments array containing details, additional details, and image keys for the discord status.</param>
+	/// <returns><c>true</c> if the main menu status is set successfully.</returns>
+	/// <exception cref="InvalidOperationException">Thrown if a client cannot be created at this time.</exception>
 	private static bool CallAddMainMenu(object[] args)
 	{
 		if (!DiscordRPCAPIMod.Instance.CanCreateClient)
@@ -88,6 +110,12 @@ internal static class ModCalls
 		return true;
 	}
 
+	/// <summary>
+	/// Adds a biome or event to the discord rich presence data with a specified checker function, texture, and priority.
+	/// </summary>
+	/// <param name="args">The arguments array containing the checker function, texture path, language key, priority, and client.</param>
+	/// <param name="message">The type of call ("AddBiome" or "AddEvent").</param>
+	/// <returns><c>true</c> if the biome or event is added successfully.</returns>
 	private static bool CallAddBiome(object[] args, string message)
 	{
 		var checker = args[1] as Func<bool>;
@@ -99,6 +127,11 @@ internal static class ModCalls
 		return true;
 	}
 
+	/// <summary>
+	/// Adds a boss to the discord rich presence data with specified IDs, image key, and priority.
+	/// </summary>
+	/// <param name="args">The arguments array containing the boss IDs, image key, priority, and client.</param>
+	/// <returns><c>true</c> if the boss is added successfully.</returns>
 	private static bool CallAddBoss(object[] args)
 	{
 		List<int> Id = DiscordRPCTooling.ObjectToListInt(args[1]);
