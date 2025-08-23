@@ -441,8 +441,8 @@ public class DiscordRPCAPIMod : Mod
 			Description = "In Main Menu",
 			LargeImageKey = "forest",
 			LargeImageText = "tModLoader",
-			SmallImageKey = "forest",
-			SmallImageText = "tModLoader"
+			SmallImageKey = null,
+			SmallImageText = null
 		};
 
 		ClientSetStatus(status);
@@ -521,7 +521,10 @@ public class DiscordRPCAPIMod : Mod
 
 			RichPresenceInstance.Timestamps = Config.ShowTime ? TimeStamp : null;
 			Client.SetPresence(RichPresenceInstance);
-			Client.Invoke();
+			// Causes some major issues with either the smallimagekey or largeimagekey being null
+			// if we want this we would need to modify the source code for cshard-discord-api to handle those exceptions
+			//Client.Invoke();
+			
 		}
 	}
 
