@@ -308,7 +308,7 @@ internal class DataPopulator
 		DiscordRPCAPIMod.Instance.AddBiome(biome);
 	}
 
-	public static bool AddCustomStat(string stat, ref Func<string> statValue)
+	public static bool AddCustomStat(string stat, Func<string> statValue)
 	{
 		if (string.IsNullOrWhiteSpace(stat))
 		{

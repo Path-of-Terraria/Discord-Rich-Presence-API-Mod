@@ -165,7 +165,7 @@ internal static class ModCalls
 		{
 			return false;
 		}
-		DataPopulator.AddCustomStat(statName, ref statValue);
+		DataPopulator.AddCustomStat(statName, statValue);
 		return true;
 	}
 	
