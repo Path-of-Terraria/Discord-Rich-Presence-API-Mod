@@ -348,7 +348,7 @@ public class DiscordRPCAPIMod : Mod
 	}
 
 	/// <summary>
-	/// Change the discord app ID, currently takes 3s to change
+	/// Change the discord app ID, currently takes 1s to change
 	/// </summary>
 	/// <param name="newClient">New discord app ID key</param>
 	public void ChangeDiscordClient(string newClient)
@@ -364,6 +364,8 @@ public class DiscordRPCAPIMod : Mod
 		}
 
 		CurrentClient = newClient;
+		Client.Dispose();
+		CreateNewDiscordRPCRichPresenceInstance(newClient, SavedDiscordAppId[newClient]);
 	}
 
 	/// <summary>
@@ -371,13 +373,13 @@ public class DiscordRPCAPIMod : Mod
 	/// </summary>
 	/// <param name="appId">Discord app ID</param>
 	/// <param name="key">key for app ID</param>
-	internal void CreateNewDiscordRPCRichPresenceInstance(string key = "default")
+	internal void CreateNewDiscordRPCRichPresenceInstance(string key = "default", string appId = "1351686373786255431")
 	{
 		const string TerrariaAppId = "1281930";
-		const string DiscordAppId = "1351686373786255431";
+		string discordAppId = appId;
 
-		SavedDiscordAppId.TryAdd(key, DiscordAppId);
-		Client = new DiscordRpcClient(applicationID: DiscordAppId, autoEvents: false);
+		SavedDiscordAppId.TryAdd(key, discordAppId);
+		Client = new DiscordRpcClient(applicationID: discordAppId, autoEvents: false);
 
 		bool failedToRegisterScheme = false;
 
@@ -645,10 +647,11 @@ public class DiscordRPCAPIMod : Mod
 				foreach (World world in customWorlds.Where(world =>
 					         world.ImageName.Value.Equals(Main.worldName.Split("Subworld")[0].Trim(), StringComparison.CurrentCultureIgnoreCase)))
 				{
-					status.LargeImageKey = world.ImageKey;
+					status.LargeImageKey = world.ImageKey.ToLower();
 					status.LargeImageText = null;
 					status.Description = "In " + world.ImageName.Value;
 					worldFound = true;
+					selectedClient = world.ClientId;
 					break;
 				}
 
