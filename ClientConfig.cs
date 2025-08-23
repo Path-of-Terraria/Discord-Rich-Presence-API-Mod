@@ -60,7 +60,6 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowCustomWorldName;
 
-
 	public override void OnChanged()
 	{
 		if (DiscordRPCAPIMod.Instance == null || DiscordRPCAPIMod.Instance.Client == null)
@@ -96,8 +95,7 @@ public class ClientConfig : ModConfig
 			Client.Dispose();
 		}
 	}
-
-
+	
 	public bool ShowPlayerStats()
 	{
 		return ShowHealth || ShowMana || ShowDefense || ShowDPS || ShowCustomStat;
