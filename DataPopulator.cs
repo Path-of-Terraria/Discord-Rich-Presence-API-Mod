@@ -318,4 +318,21 @@ internal class DataPopulator
 		DiscordRPCAPIMod.Instance.AddCustomStat(stat, statValue);
 		return true;
 	}
+
+	public static void AddCustomWorld(string texturePath, string langKey, string client = "default")
+	{
+		if (string.IsNullOrWhiteSpace(texturePath))
+		{
+			texturePath = "Overworld";
+		}
+		
+		if (!DiscordRPCAPIMod.Instance.SavedDiscordAppId.ContainsKey(client))
+		{
+			Logger.Error($"Instance {client} not found, redirected to default Instance!");
+			client = "default";
+		}
+		
+		var world = new World( texturePath, Language.GetText(langKey), client);
+		DiscordRPCAPIMod.Instance.AddWorld(world);
+	}
 }

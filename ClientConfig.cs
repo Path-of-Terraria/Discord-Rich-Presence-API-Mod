@@ -27,10 +27,16 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowTimeCycle;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowWorldName;
+	
+	[DefaultValue(false)]
+	public bool ShowBoss;
+	
+	[DefaultValue(false)]
+	public bool ShowBiome;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowHealth;
 
 	[DefaultValue(false)]
@@ -50,6 +56,9 @@ public class ClientConfig : ModConfig
 	
 	[DefaultValue(true)]
 	public bool ShowCustomStat;
+	
+	[DefaultValue(true)]
+	public bool ShowCustomWorldName;
 
 
 	public override void OnChanged()

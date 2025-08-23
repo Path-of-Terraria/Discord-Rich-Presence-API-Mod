@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiscordRPC;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace DiscordRPCAPI;
 
@@ -69,6 +70,7 @@ public class DiscordRPCAPIMod : Mod
 	private Dictionary<int, Boss> presentableBosses = [];
 	private ClientStatus customStatus = null;
 	private List<Biome> presentableBiomes = [];
+	private List<World> customWorlds = [];
 
 	private static Dictionary<string, Func<string>> customStats = [];
 
@@ -168,6 +170,15 @@ public class DiscordRPCAPIMod : Mod
 	public void AddCustomStat(string stat, Func<string> statValue)
 	{
 		customStats.Add(stat,statValue);
+	}
+	
+	/// <summary>
+	/// Adds a custom world to the list <see cref="customWorlds"/> to show them instead of biome or/and boss
+	/// </summary>
+	/// <param name="world"></param>
+	public void AddWorld(World world)
+	{
+		customWorlds.Add(world);
 	}
 
 	/// <summary>
@@ -278,7 +289,7 @@ public class DiscordRPCAPIMod : Mod
 
 		if (customStats.Count > 0)
 		{
-			state = customStats.Aggregate(state, (current, stat) => current + (stat.Key + ": " + stat.Value()));
+			state = customStats.Aggregate(state, (current, stat) => current + (Language.GetText(stat.Key) + ": " + stat.Value()));
 		}
 
 		return state.Trim();
@@ -455,7 +466,7 @@ public class DiscordRPCAPIMod : Mod
 		}
 		else
 		{
-			RichPresenceInstance.Assets.LargeImageKey = "forest"; //status.LargeImageKey;
+			RichPresenceInstance.Assets.LargeImageKey = status.LargeImageKey;
 			RichPresenceInstance.Assets.LargeImageText = status.LargeImageText;
 		}
 
@@ -466,7 +477,7 @@ public class DiscordRPCAPIMod : Mod
 		}
 		else
 		{
-			RichPresenceInstance.Assets.SmallImageKey = "forest"; //status.SmallImageKey;
+			RichPresenceInstance.Assets.SmallImageKey = status.SmallImageKey;
 			RichPresenceInstance.Assets.SmallImageText = status.SmallImageText;
 		}
 	}
@@ -601,15 +612,16 @@ public class DiscordRPCAPIMod : Mod
 		Boss? checkBoss = GetCurrentBoss();
 		Biome? checkBiome = GetCurrentBiome();
 		string selectedClient = "default";
+		bool worldFound = false;
 
-		if (checkBoss != null)
+		if (checkBoss != null && Config.ShowBoss)
 		{
 			Boss boss = checkBoss.Value;
 			status.LargeImageKey = boss.ImageKey;
 			status.Description = "Fighting " + boss.ImageName;
 			selectedClient = boss.ClientId;
 		}
-		else if (checkBiome != null)
+		else if (checkBiome != null && Config.ShowBiome)
 		{
 			Biome biome = checkBiome.Value;
 			status.LargeImageKey = biome.ImageKey;
@@ -621,6 +633,28 @@ public class DiscordRPCAPIMod : Mod
 			if (timeOfDay != null)
 			{
 				status.Description += $" ({timeOfDay})";
+			}
+		}
+		else
+		{
+			if (Config.ShowCustomWorldName)
+			{
+				foreach (World world in customWorlds.Where(world =>
+					         world.ImageName.Value.Equals(Main.worldName.Split("Subworld")[0].Trim(), StringComparison.CurrentCultureIgnoreCase)))
+				{
+					status.LargeImageKey = world.ImageKey;
+					status.LargeImageText = null;
+					status.Description = "In " + world.ImageName.Value;
+					worldFound = true;
+					break;
+				}
+
+				if (!worldFound)
+				{
+					status.LargeImageKey = "forest";
+					status.LargeImageText = null;
+					status.Description = $"In {Language.GetTextValue("Overworld")}";
+				}
 			}
 		}
 
@@ -711,6 +745,6 @@ public class DiscordRPCAPIMod : Mod
 			}
 		}
 
-		WorldStaticInfo = $"Playing {wName} {wDiff}";
+		WorldStaticInfo = $"In {wName} {wDiff}";
 	}
 }

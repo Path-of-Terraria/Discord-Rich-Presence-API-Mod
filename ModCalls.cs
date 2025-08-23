@@ -36,6 +36,10 @@ internal static class ModCalls
 				case "addevent":
 				case "addbiome":
 					return CallAddBiome(args, message);
+				
+				//e.g Call("AddWorld", "Brain Domain", "domain_placeholder", client="default")
+				case "addworld":
+					return CallAddWorld(args);
 
 				//e.g. Call("MainMenu", "details", "belowDetails", "mod_placeholder", "modName")
 				case "mainmenu":
@@ -162,6 +166,21 @@ internal static class ModCalls
 			return false;
 		}
 		DataPopulator.AddCustomStat(statName, ref statValue);
+		return true;
+	}
+	
+	/// <summary>
+	/// Adds a custom world to the discord rich presence data with a specified texture.
+	/// </summary>
+	/// <param name="args">The arguments array containing texture path, language key, and client.</param>
+	/// <returns><c>true</c> if the world is added successfully.</returns>
+	private static bool CallAddWorld(object[] args)
+	{
+		var checker = args[1] as Func<bool>;
+		(string texturePath, string langKey) = (args[1] as string, args[2] as string);
+		string client = args[3] is string ? args[3] as string : "default";
+		DataPopulator.AddCustomWorld(texturePath, langKey, client);
+
 		return true;
 	}
 }
