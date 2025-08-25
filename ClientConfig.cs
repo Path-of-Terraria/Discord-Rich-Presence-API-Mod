@@ -27,13 +27,19 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowTimeCycle;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowWorldName;
+	
+	[DefaultValue(false)]
+	public bool ShowBoss;
+	
+	[DefaultValue(false)]
+	public bool ShowBiome;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowHealth;
 
-	[DefaultValue(true)]
+	[DefaultValue(false)]
 	public bool ShowDPS;
 
 	[DefaultValue(false)]
@@ -48,6 +54,12 @@ public class ClientConfig : ModConfig
 	[DefaultValue(true)]
 	public bool ShowPrefix;
 	
+	[DefaultValue(true)]
+	public bool ShowCustomStat;
+	
+	[DefaultValue(true)]
+	public bool ShowCustomWorldName;
+
 	public override void OnChanged()
 	{
 		if (DiscordRPCAPIMod.Instance == null || DiscordRPCAPIMod.Instance.Client == null)
@@ -86,6 +98,6 @@ public class ClientConfig : ModConfig
 	
 	public bool ShowPlayerStats()
 	{
-		return ShowHealth || ShowMana || ShowDefense || ShowDPS;
+		return ShowHealth || ShowMana || ShowDefense || ShowDPS || ShowCustomStat;
 	}
 }

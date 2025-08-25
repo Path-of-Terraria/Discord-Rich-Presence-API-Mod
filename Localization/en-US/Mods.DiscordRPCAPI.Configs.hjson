@@ -126,4 +126,24 @@ ClientConfig: {
 		Label: Show Prefix
 		Tooltip: ""
 	}
+
+	ShowCustomStat: {
+		Label: Show Custom Stat
+		Tooltip: ""
+	}
+
+	ShowBoss: {
+		Label: Show Boss
+		Tooltip: ""
+	}
+
+	ShowBiome: {
+		Label: Show Biome
+		Tooltip: ""
+	}
+
+	ShowCustomWorldName: {
+		Label: Show Custom World Name
+		Tooltip: ""
+	}
 }
