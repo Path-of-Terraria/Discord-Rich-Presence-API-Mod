@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\tModLoader.targets"/>
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<PackageId>DiscordRPCAPI</PackageId>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyName>DiscordRPCAPI</AssemblyName>
+		<RootNamespace>DiscordRPCAPI</RootNamespace>
+		<LangVersion>12.0</LangVersion>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ExecutablePath Condition="Exists('/etc/NIXOS')">steam-run</ExecutablePath>
+		<ExecutablePath Condition="'$(ExecutablePath)' == ''">$(DotNetName)</ExecutablePath>
+		<TMLCommandLineArgs Condition="Exists('/etc/NIXOS')">$(DotNetName) $(tMLPath)</TMLCommandLineArgs>
+		<TMLCommandLineArgs Condition="'$(TMLCommandLineArgs)' == ''">$(tMLPath)</TMLCommandLineArgs>
+		<TMLServerCommandLineArgs Condition="Exists('/etc/NIXOS')">$(DotNetName) $(tMLServerPath)</TMLServerCommandLineArgs>
+		<TMLServerCommandLineArgs Condition="'$(TMLServerCommandLineArgs)' == ''">$(tMLServerPath)</TMLServerCommandLineArgs>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Remove="tModLoader.CodeAssist"/>
+		<PackageReference Include="DiscordRichPresence" Version="1.3.0.28"/>
+	</ItemGroup>
+	
+	<!-- Mod References -->
+	<ItemGroup>
+		<Reference Include="DiscordRPC" HintPath="lib\DiscordRPC.dll" />
+	</ItemGroup>
+</Project>
