@@ -66,6 +66,7 @@ public class DiscordRPCAPIMod : Mod
 	internal string WorldStaticInfo = null;
 	internal Dictionary<string, string> SavedDiscordAppId;
 	internal Timestamps TimeStamp = null;
+	internal string ClientOverride = null;
 
 	private Dictionary<int, Boss> presentableBosses = [];
 	private ClientStatus customStatus = null;
@@ -364,6 +365,23 @@ public class DiscordRPCAPIMod : Mod
 		}
 
 		CurrentClient = newClient;
+		CreateNewDiscordRPCRichPresenceInstance(newClient);
+	}
+
+	public void SetClientOverride(string clientKey)
+	{
+		if (string.IsNullOrWhiteSpace(clientKey) || !SavedDiscordAppId.ContainsKey(clientKey))
+		{
+			ClientOverride = null;
+			return;
+		}
+
+		ClientOverride = clientKey;
+	}
+
+	public void ClearClientOverride()
+	{
+		ClientOverride = null;
 	}
 
 	/// <summary>
@@ -374,10 +392,19 @@ public class DiscordRPCAPIMod : Mod
 	internal void CreateNewDiscordRPCRichPresenceInstance(string key = "default")
 	{
 		const string TerrariaAppId = "1281930";
-		const string DiscordAppId = "1351686373786255431";
+		const string DefaultDiscordAppId = "1351686373786255431";
 
-		SavedDiscordAppId.TryAdd(key, DiscordAppId);
-		Client = new DiscordRpcClient(applicationID: DiscordAppId, autoEvents: false);
+		SavedDiscordAppId.TryAdd("default", DefaultDiscordAppId);
+
+		if (!SavedDiscordAppId.TryGetValue(key, out string discordAppId))
+		{
+			key = "default";
+			discordAppId = DefaultDiscordAppId;
+		}
+
+		CurrentClient = key;
+		Client?.Dispose();
+		Client = new DiscordRpcClient(applicationID: discordAppId, autoEvents: false);
 
 		bool failedToRegisterScheme = false;
 
@@ -613,7 +640,7 @@ public class DiscordRPCAPIMod : Mod
 
 		Boss? checkBoss = GetCurrentBoss();
 		Biome? checkBiome = GetCurrentBiome();
-		string selectedClient = "default";
+		string selectedClient = ClientOverride ?? "default";
 		bool worldFound = false;
 
 		if (checkBoss != null && Config.ShowBoss)
@@ -647,6 +674,7 @@ public class DiscordRPCAPIMod : Mod
 					status.LargeImageKey = world.ImageKey;
 					status.LargeImageText = null;
 					status.Description = "In " + world.ImageName.Value;
+					selectedClient = world.ClientId;
 					worldFound = true;
 					break;
 				}

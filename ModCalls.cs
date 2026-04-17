@@ -55,6 +55,13 @@ internal static class ModCalls
 				//e.g. Call("AddPlayerStat", string statName, Func<string> statValue)
 				case "addplayerstat":
 					return CallAddPlayerStat(args);
+				case "setclient":
+				case "forceclient":
+				case "setclientoverride":
+					return CallSetClientOverride(args);
+				case "clearclient":
+				case "clearclientoverride":
+					return CallClearClientOverride();
 				default:
 					break;
 			}
@@ -166,6 +173,23 @@ internal static class ModCalls
 			return false;
 		}
 		DataPopulator.AddCustomStat(statName, statValue);
+		return true;
+	}
+
+	private static bool CallSetClientOverride(object[] args)
+	{
+		if (args[1] is not string clientKey)
+		{
+			return false;
+		}
+
+		DiscordRPCAPIMod.Instance.SetClientOverride(clientKey);
+		return true;
+	}
+
+	private static bool CallClearClientOverride()
+	{
+		DiscordRPCAPIMod.Instance.ClearClientOverride();
 		return true;
 	}
 	
