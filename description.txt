@@ -1,6 +1,9 @@
-This mod is a port of PurplefinNeptunia and staticfox's original DiscordRP mod.
+This mod is a port of PurplefinNeptunia and staticfox's and then a port of that port.
 A ton of changes have happened, but you can find the original 1.3 code here: 
 https://github.com/staticfox/DiscordRP-tModLoader?tab=readme-ov-file
+
+The owner of this mod is the Path of Terraria Team.
+Updated Repo: https://github.com/Path-of-Terraria/Discord-Rich-Presence-API-Mod
 
 Original Description:
 This mod add a little extra detail of your ingame terraria activity to your discord status.
@@ -68,5 +71,8 @@ Displayed Bosses:
 - Duke Fishron
 - Lunatic Cultist
 - Moon Lord
+
+Additional Information:
+- You can customize the info displayed in the Rich Presence. See wiki in Github for more information.
 
 Thanks to Pullo and Johny for helping me testing the mod.

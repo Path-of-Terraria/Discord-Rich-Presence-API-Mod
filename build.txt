@@ -1,7 +1,7 @@
-author = Purplefin Neptuna, staticfox, GabeHasWon
+author = Purplefin Neptuna, staticfox, GabeHasWon, ScottieKnowz
 version = 1.0
 displayName = Discord Rich Presence API
-homepage = https://github.com/PurplefinNeptuna/DiscordRP-tModLoader
+homepage = https://github.com/Path-of-Terraria/Discord-Rich-Presence-API-Mod
 includeSource = true
 dllReferences = DiscordRPC
 buildIgnore = *.git, *.csproj, *.user, *.sln, *.exe, .vs/*, bin/*, obj/*
