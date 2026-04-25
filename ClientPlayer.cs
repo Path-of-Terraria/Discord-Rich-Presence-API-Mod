@@ -78,6 +78,13 @@ public class ClientPlayer : ModPlayer
 	public static Tile CurrentTile()
 	{
 		Player player = Main.LocalPlayer;
-		return Main.tile[player.Center.ToTileCoordinates()];
+		Point tileCoordinates = player.Center.ToTileCoordinates();
+
+		if (!WorldGen.InWorld(tileCoordinates.X, tileCoordinates.Y))
+		{
+			return default;
+		}
+
+		return Main.tile[tileCoordinates];
 	}
 }
